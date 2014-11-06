@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="author" content="www.frebsite.nl">
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes">
+
+		<title>jQuery.mmenu - Demo</title>
+
+		<link type="text/css" rel="stylesheet" href="jQuery.mmenu%20-%20Demo_files/demo.css">
+		<link type="text/css" rel="stylesheet" href="jQuery.mmenu%20-%20Demo_files/jquery.css">
+		<style type="text/css">
+			.content
+			{
+				padding-top: 0;
+			}
+			#intro,
+			#first,
+			#second,
+			#third
+			{
+				height: 350px;
+				padding-top: 190px;
+			}
+			#first,
+			#second,
+			#third
+			{
+				border-top: 1px solid #ccc;
+			}
+		</style>
+
+		<script type="text/javascript" src="jQuery.mmenu%20-%20Demo_files/jquery-1.js"></script>
+		<script type="text/javascript" src="jQuery.mmenu%20-%20Demo_files/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var $menu = $('nav#menu'),
+					$html = $('html, body');
+
+				$menu
+					.mmenu()
+					.find( 'a' )
+					.on( 'click',
+						function()
+						{
+							var href = $(this).attr( 'href' );
+							$menu.one(
+								'closed.mm',
+								function()
+								{
+									setTimeout(
+										function()
+										{
+											$html.animate({
+												scrollTop: $( href ).offset().top
+											});	
+										}, 10
+									);	
+								}
+							);
+						}
+					)
+					.end()
+					.find( 'li' )
+					.first()
+					.trigger( 'setSelected' );
+			});
+		</script>
+	</head>
+	<body class=""><nav class="mm-menu mm-horizontal mm-offcanvas" id="menu"><ul id="mm-0" class="mm-list mm-panel mm-opened mm-current">
+				<li class="mm-selected"><a href="#intro">Intro</a></li>
+				<li><a href="#first">First section</a></li>
+				<li><a href="#second">Secons section</a></li>
+				<li><a href="#third">Third section</a></li>
+			</ul></nav>
+		<div class="mm-page" id="page">
+			<div class="header mm-fixed-top">
+				<a href="#menu"></a>
+				Demo
+			</div>
+			<div class="content">
+				<div id="intro">					
+					<p><strong>This is a demo.</strong><br>
+						Click the menu icon to open the menu.</p>
+					
+					<p>The links in the menu link to a section on the same page, some small javascript makes the page scroll smoothly.</p>
+				</div>
+				<div id="first">
+					<p><strong>This is the first section.</strong><br>
+						Notice how the fixed header and footer slide out along with the page.</p>
+
+					<p><a href="#menu">Open the menu.</a></p>
+				</div>
+				<div id="second">
+					<p><strong>This is the second section.</strong><br>
+						<a href="#menu">Open the menu.</a></p>
+				</div>
+				<div id="third">
+					<p><strong>This is the third section.</strong><br>
+						<a href="#menu">Open the menu.</a></p>
+				</div>
+			</div>
+		</div>
+		
+	
+<div id="mm-blocker"></div></body></html>
